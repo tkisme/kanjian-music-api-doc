@@ -160,132 +160,6 @@
             }
             ~~~~
 
-    * 通过风格获取专辑
-        * URL /v1.1/genre/\<genre_id\>/album
-        * HTTP METHOD GET
-        * 参数 公共参数 + genre_id
-        * 返回值
-
-            | 字段           | 类型   | 必填 | 描述                   |
-            | -------------- | ------ | ---- | ---------------------- |
-            | page           | Int    | 是   | 当前页数               |
-            | pre_page       | Int    | 是   | 上一页                 |
-            | next_page      | Int    | 是   | 下一页                 |
-            | count          | Int    | 是   | 当前页面条数           |
-            | albums         | Array  | 是   | 专辑列表               |
-
-            | 字段           | 类型   | 必填 | 描述                   |
-            | -------------- | ------ | ---- | ---------------------- |
-            | id             | Int    | 是   | 专辑ID                 |
-            | album_name     | String | 是   | 专辑名称               |
-            | album_desc     | String | 是   | 专辑描述               |
-            | pic_url        | String | 是   | 专辑图                 |
-
-        * 示例
-        
-            ~~~~
-            {
-                "page": 10,
-                "pre_page": 9,
-                "next_page": 11,
-                "count": 30,
-                "albums": [
-                    {
-                        "id": 0,
-                        "album_name": "how you love me",
-                        "album_desc": "",
-                        "pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
-                    },
-                    {
-                        "id": 1,
-                        "album_name": "way to go",
-                        "album_desc": "",
-                        "pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
-                    },
-                    ...
-                ]
-            }
-            ~~~~
-        
-    * 根据风格获取单曲列表
-        * URL /v1.1/genre/\<genre_id\>/track
-        * HTTP METHOD GET
-        * 参数 公共参数 + genre_id
-        * 返回值
-
-            | 字段           | 类型   | 必填 | 描述                   |
-            | -------------- | ------ | ---- | ---------------------- |
-            | page           | Int    | 是   | 当前页数               |
-            | pre_page       | Int    | 是   | 上一页                 |
-            | next_page      | Int    | 是   | 下一页                 |
-            | count          | Int    | 是   | 当前页面条数           |
-            | tracks         | Array  | 是   | 单曲列表               |
-
-            | 字段           | 类型   | 必填 | 描述                   |
-            | -------------- | ------ | ---- | ---------------------- |
-            | id             | Int    | 是   | 单曲ID                 |
-            | track_name     | String | 是   | 单曲名称               |
-            | duration       | String | 是   | 时长/秒                |
-            | filesize       | String | 是   | 文件大小/KB            |
-            | album_id       | Int    | 是   | 专辑ID                 |
-            | album_name     | String | 是   | 专辑名称               |
-            | album_pic_url  | String | 是   | 专辑图片               |
-            | artists        | Array  | 是   | 艺人列表               |
-            | tags            | Array  | 是   | 标签列表                       |
-
-            | 字段           | 类型   | 必填 | 描述                   |
-            | -------------- | ------ | ---- | ---------------------- |
-            | artist_id      | Int    | 是   | 音乐人ID               |
-            | artist_name    | String | 是   | 音乐人名称             |
-            | artist_pic_url | String | 是   | 音乐人图片             |
-
-        * 示例
-        
-            ~~~~
-            {
-                "page": 10,
-                "pre_page": 9,
-                "next_page": 11,
-                "count": 30,
-                "tracks": [
-                    {
-                        "id": 0,
-                        "track_name": "我的眼泪你的心",
-                        "duration": 180,
-                        "filesize": 3096,
-                        "album_id": 1,
-                        "album_name": "way to go",
-                        "album_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
-                        "artists": [
-                            {
-                                "artist_id": 1,
-                                "artist_name": "Gravity Alterstra",
-                                "artist_pic_url": "http://a.com/default/artist.jpg"
-                            }
-                        ],
-                        "tags":[1,2,3]
-                    },
-                    {
-                        "id": 1,
-                        "track_name": "dsadas",
-                        "duration": 180,
-                        "filesize": 3096,
-                        "album_id": 1,
-                        "album_name": "way to go",
-                        "album_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
-                        "artists": [
-                            {
-                                "artist_id": 95067,
-                                "artist_name": "Gravity Alterstra",
-                                "artist_pic_url": "http://a.com/default/artist.jpg"
-                            }
-                        ],
-                        "tags":[1,2,3]
-                    },
-                    ...
-                ]
-            }
-            ~~~~
 
 2. 音乐人
 
@@ -341,137 +215,11 @@
                 ]
             }
             ~~~~
-        
-    * 通过音乐人获取专辑
-        * URL /v1.1/artist/\<artist_id\>/album
-        * HTTP METHOD GET
-        * 参数 公共参数 + artist_id
-        * 返回值
 
-            | 字段           | 类型   | 必填 | 描述                   |
-            | -------------- | ------ | ---- | ---------------------- |
-            | page           | Int    | 是   | 当前页数               |
-            | pre_page       | Int    | 是   | 上一页                 |
-            | next_page      | Int    | 是   | 下一页                 |
-            | count          | Int    | 是   | 当前页面条数           |
-            | albums         | Array  | 是   | 专辑列表               |
-
-            | 字段           | 类型   | 必填 | 描述                   |
-            | -------------- | ------ | ---- | ---------------------- |
-            | id             | Int    | 是   | 专辑ID                 |
-            | album_name     | String | 是   | 专辑名称               |
-            | album_desc     | String | 是   | 专辑描述               |
-            | pic_url        | String | 是   | 专辑图                 |
-
-        * 示例
-            
-            ~~~~
-            {
-                "page": 10,
-                "pre_page": 9,
-                "next_page": 11,
-                "count": 30,
-                "albums": [
-                    {
-                        "id": 0,
-                        "album_name": "how we roll",
-                        "album_desc": "",
-                        "pic_url": "image.kanjian.com/xxx/xxx.jpg",
-                    },
-                    {
-                        "id": 1,
-                        "album_name": "Reasonable Doubt",
-                        "album_desc": "",
-                        "pic_url": "image.kanjian.com/xxx/xxx.jpg",
-                    },
-                    ...
-                ]
-            }
-            ~~~~
-
-    * 根据音乐人获取单曲
-        * URL /v1.1/artist/\<artist_id\>/track
-        * HTTP METHOD GET
-        * 参数 公共参数 + artist_id
-        * 返回值
-
-            | 字段           | 类型   | 必填 | 描述                   |
-            | -------------- | ------ | ---- | ---------------------- |
-            | page           | Int    | 是   | 当前页数               |
-            | pre_page       | Int    | 是   | 上一页                 |
-            | next_page      | Int    | 是   | 下一页                 |
-            | count          | Int    | 是   | 当前页面条数           |
-            | tracks         | Array  | 是   | 单曲列表               |
-
-            | 字段           | 类型   | 必填 | 描述                   |
-            | -------------- | ------ | ---- | ---------------------- |
-            | id             | Int    | 是   | 单曲ID                 |
-            | track_name     | String | 是   | 单曲名称               |
-            | duration       | String | 是   | 时长/秒                |
-            | filesize       | String | 是   | 文件大小/KB            |
-            | album_id       | Int    | 是   | 专辑ID                 |
-            | album_name     | String | 是   | 专辑名称               |
-            | album_pic_url  | String | 是   | 专辑图片               |
-            | artists        | Array  | 是   | 艺人列表               |
-            | tags            | Array  | 是   | 标签列表                       |
-
-            | 字段           | 类型   | 必填 | 描述                   |
-            | -------------- | ------ | ---- | ---------------------- |
-            | artist_id      | Int    | 是   | 音乐人ID               |
-            | artist_name    | String | 是   | 音乐人名称             |
-            | artist_pic_url | String | 是   | 音乐人图片             |
-
-        * 示例
-        
-            ~~~~
-            {
-                "page": 10,
-                "pre_page": 9,
-                "next_page": 11,
-                "count": 30,
-                "tracks": [
-                    {
-                        "id": 0,
-                        "track_name": "我的眼泪你的心",
-                        "duration": 180,
-                        "filesize": 3096,
-                        "album_id": 1,
-                        "album_name": "way to go",
-                        "album_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
-                        "artists": [
-                            {
-                                "artist_id": 1,
-                                "artist_name": "T",
-                                "artist_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
-                            }
-                        ],
-                        "tags":[1,2,3]
-                    },
-                    {
-                        "id": 1,
-                        "track_name": "别问我是谁",
-                        "duration": 180,
-                        "filesize": 3096,
-                        "album_id": 1,
-                        "album_name": "way to go",
-                        "album_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
-                        "artists": [
-                            {
-                                "artist_id": 1,
-                                "artist_name": "T",
-                                "artist_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
-                            }
-                        ],
-                        "tags":[1,2,3]
-                    },
-                    ...
-                ]
-            }
-            ~~~~
-
+ 
 3. 专辑
 
-    * 获取专辑
+    * 获取单个专辑信息
         * URL /v1.1/album/\<album_id\>
         * HTTP METHOD GET
         * 参数 公共参数 + album_id
@@ -495,10 +243,18 @@
             }
             ~~~~
 
-    * 根据专辑获取单曲
-        * URL /v1.1/album/\<album_id\>/track
+    * 获取专辑列表
+        * URL /v1.1/album
         * HTTP METHOD GET
-        * 参数 公共参数 + album_id
+        * 参数 公共参数 + 
+    
+            | 字段           | 类型   | 必填 | 描述                   |
+            | -------------- | ------ | ---- | ---------------------- |
+            | genre_id        | Int | 否   | 风格ID                 |
+            | artist_id        | Int | 否   | 音乐人ID                 |
+            | page           | Int    | 否   | 当前页数               |
+            | pre_page       | Int    | 是   | 每页数据长度         |
+
         * 返回值
 
             | 字段           | 类型   | 必填 | 描述                   |
@@ -507,65 +263,35 @@
             | pre_page       | Int    | 是   | 上一页                 |
             | next_page      | Int    | 是   | 下一页                 |
             | count          | Int    | 是   | 当前页面条数           |
-            | tracks         | Array  | 是   | 单曲列表               |
-        
-            | 字段           | 类型   | 必填 | 描述                   |
-            | -------------- | ------ | ---- | ---------------------- |
-            | id             | Int    | 是   | 单曲ID                 |
-            | track_name     | String | 是   | 单曲名称               |
-            | duration       | String | 是   | 时长/秒                |
-            | filesize       | String | 是   | 文件大小/KB            |
-            | album_id       | Int    | 是   | 专辑ID                 |
-            | album_name     | String | 是   | 专辑名称               |
-            | album_pic_url  | String | 是   | 专辑图片               |
-            | artists        | Array  | 是   | 艺人列表               |
-            | tags            | Array  | 是   | 标签列表                       |
+            | albums         | Array  | 是   | 专辑列表               |
 
             | 字段           | 类型   | 必填 | 描述                   |
             | -------------- | ------ | ---- | ---------------------- |
-            | artist_id      | Int    | 是   | 音乐人ID               |
-            | artist_name    | String | 是   | 音乐人名称             |
+            | id             | Int    | 是   | 专辑ID                 |
+            | album_name     | String | 是   | 专辑名称               |
+            | album_desc     | String | 是   | 专辑描述               |
+            | pic_url        | String | 是   | 专辑图                 |
 
         * 示例
-        
+    
             ~~~~
             {
                 "page": 10,
                 "pre_page": 9,
                 "next_page": 11,
                 "count": 30,
-                "tracks": [
+                "albums": [
                     {
                         "id": 0,
-                        "track_name": "我的眼泪你的心",
-                        "duration": 180,
-                        "filesize": 3096,
-                        "album_id": 1,
-                        "album_name": "way to go",
-                        "album_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
-                        "artists": [
-                            {
-                                "artist_id": 1,
-                                "artist_name": "TT"
-                            }
-                        ],
-                        "tags":[1,2,3]
+                        "album_name": "赵大宝儿",
+                        "album_desc": "",
+                        "pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
                     },
                     {
                         "id": 1,
-                        "track_name": "别问我是谁",
-                        "duration": 180,
-                        "filesize": 3096,
-                        "album_id": 1,
-                        "album_name": "way to go",
-                        "album_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
-                        "artists": [
-                            {
-                                "artist_id": 1,
-                                "artist_name": "AA"
-                            }
-                        ],
-                        "tags":[1,2,3]
+                        "album_name": "北京希望无限文化传媒有限公司",
+                        "album_desc": "",
+                        "pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
                     },
                     ...
                 ]
@@ -574,7 +300,7 @@
 
 4. 单曲
 
-    * 获取单曲
+    * 获取单个单曲信息
         * URL /v1.1/track/\<track_id\>
         * HTTP METHOD GET
         * 参数 公共参数 + track_id
@@ -677,7 +403,116 @@
                 ]
             }
 
-5. 搜索接口
+    * 获取单曲列表
+        * URL /v1.1/track
+        * HTTP METHOD GET
+        * 参数 公共参数 + 
+    
+            | 字段           | 类型   | 必填 | 描述                   |
+            | -------------- | ------ | ---- | ---------------------- |
+            | album_id        | Int | 否   | 专辑ID                 |
+            | genre_id        | Int | 否   | 风格ID                 |
+            | artist_id        | Int | 否   | 音乐人ID                 |
+            | page           | Int    | 否   | 当前页数               |
+            | pre_page       | Int    | 是   | 每页数据长度         |
+            
+        * 返回值
+
+        | 字段           | 类型   | 必填 | 描述                  |
+            | -------------- | ------ | ---- | --------------------- |
+            | page           | Int    | 是   | 当前页数              |
+            | pre_page       | Int    | 是   | 上一页                |
+            | next_page      | Int    | 是   | 下一页                |
+            | count          | Int    | 是   | 当前页面条数          |
+            | tracks         | Array  | 是   | 单曲列表              |
+
+            | 字段           | 类型   | 必填 | 描述                  |
+            | -------------- | ------ | ---- | --------------------- |
+            | id             | Int    | 是   | 单曲ID                |
+            | track_name     | String | 是   | 单曲名称              |
+            | duration       | String | 是   | 时长/秒               |
+            | filesize       | String | 是   | 文件大小/KB           |
+            | album_id       | Int    | 是   | 专辑ID                |
+            | album_name     | String | 是   | 专辑名称              |
+            | album_pic_url  | String | 是   | 专辑图片              |
+            | artists        | Array  | 是   | 艺人列表              |
+
+            | 字段           | 类型   | 必填 | 描述                  |
+            | -------------- | ------ | ---- | --------------------- |
+            | artist_id      | Int    | 是   | 音乐人ID              |
+            | artist_name    | String | 是   | 音乐人名称            |
+            | artist_pic_url | String | 是   | 音乐人图片            |
+
+        * 示例
+    
+            ~~~~
+            {
+                "page": 10,
+                "pre_page": 9,
+                "next_page": 11,
+                "count": 30,
+                "tracks": [
+                    {
+                        "id": 0,
+                        "track_name": "赵大宝儿",
+                        "duration": 180,
+                        "filesize": 3096,
+                        "album_id": 1,
+                        "album_name": "way to go",
+                        "album_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
+                        "artists": [
+                            {
+                                "artist_id": 1,
+                                "artist_name": "周杰",
+                                "artist_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
+                            }
+                        ]
+                    },
+                    {
+                        "id": 1,
+                        "track_name": "北京希望无限文化传媒有限公司",
+                        "duration": 180,
+                        "filesize": 3096,
+                        "album_id": 1,
+                        "album_name": "way to go",
+                        "album_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
+                        "artists": [
+                            {
+                                "artist_id": 1,
+                                "artist_name": "Jony J",
+                                "artist_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
+                            }
+                        ]
+                    },
+                    ...
+                ]
+            }
+            ~~~~
+
+5. 标签
+    * 获取标签列表
+        * URL /v1.1/tag/track
+        * HTTP METHOD GET
+        * 参数 公共参数 
+        * 返回值
+
+            | 字段           | 类型   | 必填 | 描述                  |
+            | -------------- | ------ | ---- | --------------------- |
+            | id             | Int    | 是   | 标签ID                |
+            | tag_name     | String | 是   | 标签名称              |
+            
+
+        * 示例
+    
+            ~~~~
+            {
+                "id": 0,
+                "tag_name": "流行"
+            }
+            ~~~~
+
+
+5. 模糊搜索
     * 搜索音乐人
         * URL /v1.1/search/artist
         * HTTP METHOD GET
@@ -865,26 +700,6 @@
             }
             ~~~~
 
-    * 获取歌曲标签列表
-        * URL /v1.1/tag/track
-        * HTTP METHOD GET
-        * 参数 公共参数 
-        * 返回值
-
-            | 字段           | 类型   | 必填 | 描述                  |
-            | -------------- | ------ | ---- | --------------------- |
-            | id             | Int    | 是   | 标签ID                |
-            | tag_name     | String | 是   | 标签名称              |
-            
-
-        * 示例
-    
-            ~~~~
-            {
-                "id": 0,
-                "tag_name": "流行"
-            }
-            ~~~~
 
 6. 批量获取单曲信息
     * 获取某个日期后的更新单曲列表
