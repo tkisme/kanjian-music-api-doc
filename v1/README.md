@@ -512,7 +512,7 @@
             ~~~~
 
 
-5. 模糊搜索
+6. 模糊搜索
     * 搜索音乐人
         * URL /v1.1/search/artist
         * HTTP METHOD GET
@@ -701,7 +701,7 @@
             ~~~~
 
 
-6. 批量获取单曲信息
+7. 批量获取单曲信息
     * 获取某个日期后的更新单曲列表
         * URL /v1.1/batch_track/list
         * 只传after_date则返回after_date到今天，after_date和before_date都有值则返回after_date和before_date之间
@@ -800,7 +800,7 @@
             }
             ~~~~
 
-7. 购买回调
+8. 购买回调
 
     * 购买歌曲回调
         * URL /v1.1/buy/track
