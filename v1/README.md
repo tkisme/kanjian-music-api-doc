@@ -3,7 +3,7 @@
 ## 背景
 
 * 此文档为看见音乐对外提供接口调用的 API 文档。
-* 版本号 : v1
+* 版本号 : v1.1
 
 ## 词汇说明
 
@@ -24,11 +24,11 @@
     * 公共参数
         * 所有 API 都需要公共参数，否则服务端将会因为参数校验失败而无法调用 API 接口。
     
-            | 字段           | 类型   | 必填 | 描述               |
-            | -------------- | ------ | ---- | ------------------ |
-            | app_key        | String | 是   | 应用公钥           |
-            | access_token   | String | 是   | Token      |
-            | device_id      | String | 是   | 设备唯一ID         |
+            | 字段            | 类型   | 必填 | 描述      |
+            | -------------- | ------ | ---- | -------- |
+            | app_key        | String | 是   | 应用公钥   |
+            | access_token   | String | 是   | Token     |
+            | device_id      | String | 是   | 设备唯一ID  |
             | sig            | String | 是   | 参数签名，对除 sig 外所有参数进行签名计算得到的值 |
     
     * sig签名生成算法
@@ -42,7 +42,7 @@
         >
             keyword 参数的值可以包含一些特殊字符如 %、+ 等，所以在拼接 URL 时 API 调用方需要对 keyword 的参数值做一次 URL 编码，并且防止某些 HTTP 客户端（比如 Ruby HTTP 客户端）对这些参数值做二次编码。
             举个例子：
-            比如 keyword 的原始值为字符串"幸福溜+7"，如果不做任何处理拼接进 URL，比如 http://test.api.kanjian.com/v1/search/album?keyword=幸福溜+7&...，那么服务端默认会做一次 URL 解码，将参数 keyword 的值解析为"幸福 7"，这是不正确的。所以 API 调用方在拼接 URL 时需要对 keyword 这种参数的值做一次 URL 编码。
+            比如 keyword 的原始值为字符串"幸福溜+7"，如果不做任何处理拼接进 URL，比如 http://test.api.kanjian.com/v1.1/search/album?keyword=幸福溜+7&...，那么服务端默认会做一次 URL 解码，将参数 keyword 的值解析为"幸福 7"，这是不正确的。所以 API 调用方在拼接 URL 时需要对 keyword 这种参数的值做一次 URL 编码。
 
 1. **JSON格式**
     * 响应数据以 JSON 格式输出，HTTP 响应头中的 Content-Type 为固定值 application/json,charset=utf-8 ，字符编码格式为 UTF-8。
@@ -108,7 +108,7 @@
 1. 音乐风格
 
     * 获取风格
-        * URL /v1/genre
+        * URL /v1.1/genre
         * HTTP METHOD GET
         * 参数 公共参数
         * 返回值
@@ -161,7 +161,7 @@
             ~~~~
 
     * 通过风格获取专辑
-        * URL /v1/genre/\<genre_id\>/album
+        * URL /v1.1/genre/\<genre_id\>/album
         * HTTP METHOD GET
         * 参数 公共参数 + genre_id
         * 返回值
@@ -208,7 +208,7 @@
             ~~~~
         
     * 根据风格获取单曲列表
-        * URL /v1/genre/\<genre_id\>/track
+        * URL /v1.1/genre/\<genre_id\>/track
         * HTTP METHOD GET
         * 参数 公共参数 + genre_id
         * 返回值
@@ -231,6 +231,7 @@
             | album_name     | String | 是   | 专辑名称               |
             | album_pic_url  | String | 是   | 专辑图片               |
             | artists        | Array  | 是   | 艺人列表               |
+            | tags            | Array  | 是   | 标签列表                       |
 
             | 字段           | 类型   | 必填 | 描述                   |
             | -------------- | ------ | ---- | ---------------------- |
@@ -261,7 +262,8 @@
                                 "artist_name": "Gravity Alterstra",
                                 "artist_pic_url": "http://a.com/default/artist.jpg"
                             }
-                        ]
+                        ],
+                        "tags":[1,2,3]
                     },
                     {
                         "id": 1,
@@ -277,7 +279,8 @@
                                 "artist_name": "Gravity Alterstra",
                                 "artist_pic_url": "http://a.com/default/artist.jpg"
                             }
-                        ]
+                        ],
+                        "tags":[1,2,3]
                     },
                     ...
                 ]
@@ -287,7 +290,7 @@
 2. 音乐人
 
     * 获取音乐人
-        * URL /v1/artist
+        * URL /v1.1/artist
         * HTTP METHOD GET
         * 参数 公共参数
         * 返回值
@@ -340,7 +343,7 @@
             ~~~~
         
     * 通过音乐人获取专辑
-        * URL /v1/artist/\<artist_id\>/album
+        * URL /v1.1/artist/\<artist_id\>/album
         * HTTP METHOD GET
         * 参数 公共参数 + artist_id
         * 返回值
@@ -387,7 +390,7 @@
             ~~~~
 
     * 根据音乐人获取单曲
-        * URL /v1/artist/\<artist_id\>/track
+        * URL /v1.1/artist/\<artist_id\>/track
         * HTTP METHOD GET
         * 参数 公共参数 + artist_id
         * 返回值
@@ -410,6 +413,7 @@
             | album_name     | String | 是   | 专辑名称               |
             | album_pic_url  | String | 是   | 专辑图片               |
             | artists        | Array  | 是   | 艺人列表               |
+            | tags            | Array  | 是   | 标签列表                       |
 
             | 字段           | 类型   | 必填 | 描述                   |
             | -------------- | ------ | ---- | ---------------------- |
@@ -440,7 +444,8 @@
                                 "artist_name": "T",
                                 "artist_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
                             }
-                        ]
+                        ],
+                        "tags":[1,2,3]
                     },
                     {
                         "id": 1,
@@ -456,7 +461,8 @@
                                 "artist_name": "T",
                                 "artist_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
                             }
-                        ]
+                        ],
+                        "tags":[1,2,3]
                     },
                     ...
                 ]
@@ -466,7 +472,7 @@
 3. 专辑
 
     * 获取专辑
-        * URL /v1/album/\<album_id\>
+        * URL /v1.1/album/\<album_id\>
         * HTTP METHOD GET
         * 参数 公共参数 + album_id
         * 返回值
@@ -490,7 +496,7 @@
             ~~~~
 
     * 根据专辑获取单曲
-        * URL /v1/album/\<album_id\>/track
+        * URL /v1.1/album/\<album_id\>/track
         * HTTP METHOD GET
         * 参数 公共参数 + album_id
         * 返回值
@@ -513,6 +519,7 @@
             | album_name     | String | 是   | 专辑名称               |
             | album_pic_url  | String | 是   | 专辑图片               |
             | artists        | Array  | 是   | 艺人列表               |
+            | tags            | Array  | 是   | 标签列表                       |
 
             | 字段           | 类型   | 必填 | 描述                   |
             | -------------- | ------ | ---- | ---------------------- |
@@ -541,7 +548,8 @@
                                 "artist_id": 1,
                                 "artist_name": "TT"
                             }
-                        ]
+                        ],
+                        "tags":[1,2,3]
                     },
                     {
                         "id": 1,
@@ -556,7 +564,8 @@
                                 "artist_id": 1,
                                 "artist_name": "AA"
                             }
-                        ]
+                        ],
+                        "tags":[1,2,3]
                     },
                     ...
                 ]
@@ -566,7 +575,7 @@
 4. 单曲
 
     * 获取单曲
-        * URL /v1/track/\<track_id\>
+        * URL /v1.1/track/\<track_id\>
         * HTTP METHOD GET
         * 参数 公共参数 + track_id
         * 返回值
@@ -582,6 +591,7 @@
             | album_name         | String | 是   | 专辑名称                       |
             | album_pic_url      | String | 是   | 专辑图片                       |
             | artists            | Array  | 是   | 艺人列表                       |
+            | tags            | Array  | 是   | 标签列表                       |
 
             | 字段            | 类型   | 必填 | 描述                  |
             | --------------  | ------ | ---- | --------------------- |
@@ -612,12 +622,13 @@
                         "artist_name": "TT",
                         "artist_pic_url": "http://image.kanjian.com/xxx/xxx.jpg",
                     }
-                ]
+                ],
+                "tags":[1,2,3]
             }
             ~~~~
 
     * 获取单曲试听地址
-        * URL /v1/track/\<track_id\>/audition
+        * URL /v1.1/track/\<track_id\>/audition
         * HTTP METHOD GET
         * 参数 公共参数 + track_id
         * 返回值
@@ -668,7 +679,7 @@
 
 5. 搜索接口
     * 搜索音乐人
-        * URL /v1/search/artist
+        * URL /v1.1/search/artist
         * HTTP METHOD GET
         * 参数 公共参数 + 
     
@@ -720,7 +731,7 @@
             ~~~~
 
     * 搜索专辑
-        * URL /v1/search/album
+        * URL /v1.1/search/album
         * HTTP METHOD GET
         * 参数 公共参数 + 
     
@@ -772,13 +783,14 @@
             ~~~~
 
     * 搜索单曲
-        * URL /v1/search/track
+        * URL /v1.1/search/track
         * HTTP METHOD GET
         * 参数 公共参数 + 
     
             | 字段           | 类型   | 必填 | 描述                  |
             | -------------- | ------ | ---- | --------------------- |
             | keyword        | String | 是   | 关键词                |
+            | tag        | String | 是   | 标签关键词                |
 
         * 返回值
 
@@ -853,9 +865,56 @@
             }
             ~~~~
 
+    * 购买回调
+        * URL /v1.1/buy/track
+        * HTTP METHOD GET
+        * 参数 公共参数 + 
+    
+            | 字段           | 类型   | 必填 | 描述                  |
+            | -------------- | ------ | ---- | --------------------- |
+            | id        | String | 是   | 歌曲id                |
+
+        * 返回值
+
+            | 字段           | 类型   | 必填 | 描述                  |
+            | -------------- | ------ | ---- | --------------------- |
+            | id             | Int    | 是   | 单曲ID                |
+            | track_name     | String | 是   | 单曲名称              |
+            
+
+        * 示例
+    
+            ~~~~
+            {
+                "id": 0,
+                "track_name": "赵大宝儿"
+            }
+            ~~~~
+    
+    * 获取歌曲标签列表
+        * URL /v1.1/tag/track
+        * HTTP METHOD GET
+        * 参数 公共参数 
+        * 返回值
+
+            | 字段           | 类型   | 必填 | 描述                  |
+            | -------------- | ------ | ---- | --------------------- |
+            | id             | Int    | 是   | 标签ID                |
+            | tag_name     | String | 是   | 标签名称              |
+            
+
+        * 示例
+    
+            ~~~~
+            {
+                "id": 0,
+                "track_name": "赵大宝儿"
+            }
+            ~~~~
+
 6. 批量获取单曲信息
     * 获取某个日期后的更新单曲列表
-        * URL /v1/batch_track/list
+        * URL /v1.1/batch_track/list
         * 只传after_date则返回after_date到今天，after_date和before_date都有值则返回after_date和before_date之间
         * 如果没有更新数据，则返回空字符串 ''
         * HTTP METHOD GET
@@ -880,7 +939,7 @@
             ...
             ~~~~
     * 批量获取单曲信息
-        * URL /v1/batch_track/info
+        * URL /v1.1/batch_track/info
         * HTTP METHOD POST
         * 参数 公共参数 + 
 
@@ -953,7 +1012,7 @@
             ~~~~
             
     * 获取单曲播放链接
-        * URL /v1/track/<track_id>/url
+        * URL /v1.1/track/<track_id>/url
         * HTTP METHOD GET
         * 参数 公共参数 + 
 
@@ -978,7 +1037,7 @@
 
 7. 批量获取单曲信息(秀堂)
     * 获取某个日期后的更新单曲列表
-        * URL /v1/xiutang/batch_track/list
+        * URL /v1.1/xiutang/batch_track/list
         * 只传after_date则返回after_date到今天，after_date和before_date都有值则返回after_date和before_date之间
         * 如果没有更新数据，则返回空字符串 ''
         * HTTP METHOD GET
@@ -1003,7 +1062,7 @@
             ...
             ~~~~
     * 批量获取单曲信息
-        * URL /v1/xiutang/batch_track/info
+        * URL /v1.1/xiutang/batch_track/info
         * HTTP METHOD POST
         * 参数 公共参数 + 
 
@@ -1076,7 +1135,7 @@
             ~~~~
             
     * 获取单曲播放链接
-        * URL /v1/xiutang/track/<track_id>/url
+        * URL /v1.1/xiutang/track/<track_id>/url
         * HTTP METHOD GET
         * 参数 公共参数 + 
 
